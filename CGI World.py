@@ -11,20 +11,18 @@ from codecraft import Game, Position
 game = Game()
 materials = game.materials
 print(materials)
-#Position is denoted as (x, y, z)
-#p = Position(0,1,-20)
-     
+
       
 
-#-----------------List of potential functions-----------------#    
+#-----------------List of functions-----------------#    
 
 
 #Removes blocks in a radius. Used for TNT
 def set_tnt(p):
-    for i in range(-8,8):
-        for j in range(-8,8):
-            for k in range(-8,8):
-                if((i*i)+(j*j)+(k*k) <= 64):
+    for i in range(-5,6):
+        for j in range(-5,6):
+            for k in range(-5,6):
+                if((i*i)+(j*j)+(k*k) <= 25):
                     game.set_block(Position(p.x+i, p.y+j, p.z+k), 0)
 
 #Checks block type. Calls set_tnt if block type is 88.
@@ -665,21 +663,23 @@ def buildPlatform():
       
 
     
-    
+# This puts a gap between the CGI platform and land. If timed correctly one can jump from
+# the grass to the platform. A possible rewarding challenge for students.
 def makePlatformGap():
     for i in range(-10,29):
         for j in range(-10,28):
             game.set_block(Position(i,0,j),0)
       
 
-    
+# This function builds a platform to prevent having to refresh after a fall
 def preventFall():
     for i in range(-50,50):
         for j in range(-50,50):
             game.set_block(Position(i,-20,j),34)
     
 
-
+# This function builds the target by creating the outer circle first, and each consecutive
+# smaller circle overwrites the blocks of the previous larger circle.
 def buildTarget():
     for i in range(-50,51):
         for j in range(-50,51):
@@ -715,7 +715,7 @@ def buildTarget():
       
 
     
-    
+# This function builds the steps for the students to get back to the main level
 def buildSteps():
     i = -11
     k = 8
@@ -727,18 +727,18 @@ def buildSteps():
         k += 1
 
     
-    
+# This function creates a sphere of material(int val 1-88)    
 def sphere(x,y,z,m):
     #print("sphere function called")
-    for i in range(-40,41):
-        for j in range(-40,41):
-            for k in range(-40,41):
-                if ((i*i)+(j*j)+(k*k) <= 1600):
+    for i in range(-30,31):
+        for j in range(-30,31):
+            for k in range(-30,31):
+                if ((i*i)+(j*j)+(k*k) <= 900):
                     game.set_block(Position(i+x,j+y,k+z),m)
                                 
 
 
-
+# This function is used to teleport the player to a fixed position on the map
 def teleportPlayer(p):
     game.set_player_position(Position(0,200,-20))
       
@@ -753,43 +753,14 @@ def teleportPlayer(p):
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-def buildGame():
-   # blockString = input("What would you like your world to display?")
-   # convertStringToBlocks(blockString)
+# The following function sets player position and clears the console.
+def setPlayPosAndClearConsole():
     game.set_player_position(Position(0,10,-12))
     game.clear_console() 
 
 
 
-buildGame()
+setPlayPosAndClearConsole()
 screenQuestion = "What would you like your world to display?"
 
 
@@ -798,24 +769,54 @@ screenQuestion = "What would you like your world to display?"
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 #-----------------Students Area-----------------#
-makePlatformGap()
-buildPlatform()
-
-preventFall()
-buildSteps()
-
-game.set_player_position(Position(0,250,-20))
-
-game.set_block(Position(0,249,-20),23)
-
-buildTarget()
-
-game.highlight("block")
-game.on_click(block_type)
 
 
-sphere(30, 140, -10,88)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
