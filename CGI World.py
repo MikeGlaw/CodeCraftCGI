@@ -754,13 +754,13 @@ def teleportPlayer(p):
 
 
 # The following function sets player position and clears the console.
-def setPlayPosAndClearConsole():
+def setPlayPosClearConsole():
     game.set_player_position(Position(0,10,-12))
     game.clear_console() 
 
 
 
-setPlayPosAndClearConsole()
+setPlayPosClearConsole()
 screenQuestion = "What would you like your world to display?"
 
 
